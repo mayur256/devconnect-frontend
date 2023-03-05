@@ -16,8 +16,9 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@/pages": ["pages/*"],
-      "@/components": ["components/*"]
+      "@/pages/*": ["./pages/*"],
+      "@/components/*": ["./components/*"],
+      "@/styles/*": ["./styles/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
