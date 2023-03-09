@@ -1,14 +1,11 @@
 // Top level imports
-
-import { Inter } from 'next/font/google';
+import { ReactElement } from 'react';
 
 // Atoms / Molecules / Organisms
 import { Header } from '@/components/organisms/Header';
 
-const inter = Inter({ subsets: ['latin'] })
-
 // Component definition
-export default function Home() {
+export default function Home(): ReactElement {
   return (
     <>
       <Header />

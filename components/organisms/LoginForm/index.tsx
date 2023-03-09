@@ -3,14 +3,15 @@ import React from 'react';
 
 // Antd
 import { Button, Checkbox, Form, Input, Row, Col } from 'antd';
+import type { ValidateErrorEntity } from 'rc-field-form/lib/interface';
 
 // Component definition
 export const LoginForm: React.FC = () => {
-    const onFinish = (values: any) => {
+    const onFinish = (values: string) => {
         console.log('Success:', values);
     };
 
-    const onFinishFailed = (errorInfo: any) => {
+    const onFinishFailed = (errorInfo: ValidateErrorEntity<string>) => {
         console.log('Failed:', errorInfo);
     };
 
