@@ -2,8 +2,12 @@
 import React from 'react'
 
 // Antd
-import { Button, Checkbox, Form, Input, Row, Col } from 'antd'
+import { LockOutlined, UserOutlined } from '@ant-design/icons'
+import { Button, Checkbox, Form, Input } from 'antd'
 import type { ValidateErrorEntity } from 'rc-field-form/lib/interface'
+
+// Side effect imports
+import styles from './LoginForm.module.scss'
 
 // Component definition
 export const LoginForm: React.FC = () => {
@@ -17,71 +21,71 @@ export const LoginForm: React.FC = () => {
 
 	// Main renderer
 	return (
-		<Form
-			name="basic"
-			initialValues={{ remember: true }}
-			style={{ marginTop: '2rem' }}
-			onFinish={onFinish}
-			onFinishFailed={onFinishFailed}
-			autoComplete="off"
-			labelCol={{ md: 8 }}
-			wrapperCol={{ md: 8, sm: 24 }}
-		>
-			<Row>
-				<Col xs={24}>
-					<Form.Item
-						label="Username"
-						name="username"
-						rules={[
-							{
-								required: true,
-								message: 'Please input your username!',
-							},
-						]}
-					>
-						<Input />
-					</Form.Item>
-				</Col>
-			</Row>
+		<div id={styles['components-form-demo-normal-login']}>
+			<Form
+				name="login-form"
+				className="login-form"
+				initialValues={{ remember: true }}
+				style={{ marginTop: '2rem' }}
+				onFinish={onFinish}
+				onFinishFailed={onFinishFailed}
+				autoComplete="off"
+			>
+				<Form.Item
+					name="username"
+					rules={[
+						{
+							required: true,
+							message: 'Please input your username!',
+						},
+					]}
+				>
+					<Input
+						prefix={
+							<UserOutlined className="site-form-item-icon" />
+						}
+						placeholder="Username"
+					/>
+				</Form.Item>
 
-			<Row>
-				<Col xs={24}>
-					<Form.Item
-						label="Password"
-						name="password"
-						rules={[
-							{
-								required: true,
-								message: 'Please input your password!',
-							},
-						]}
-					>
-						<Input.Password />
-					</Form.Item>
-				</Col>
-			</Row>
+				<Form.Item
+					name="password"
+					rules={[
+						{
+							required: true,
+							message: 'Please input your password!',
+						},
+					]}
+				>
+					<Input.Password
+						prefix={
+							<LockOutlined className="site-form-item-icon" />
+						}
+						placeholder="Password"
+					/>
+				</Form.Item>
 
-			<Row>
-				<Col xs={24}>
-					<Form.Item
-						name="remember"
-						valuePropName="checked"
-						wrapperCol={{ offset: 8, span: 16 }}
-					>
+				<Form.Item>
+					<Form.Item name="remember" valuePropName="checked" noStyle>
 						<Checkbox>Remember me</Checkbox>
 					</Form.Item>
-				</Col>
-			</Row>
 
-			<Row>
-				<Col xs={24}>
-					<Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-						<Button type="primary" htmlType="submit">
-							Submit
-						</Button>
-					</Form.Item>
-				</Col>
-			</Row>
-		</Form>
+					<a className="login-form-forgot" href="">
+						Forgot password
+					</a>
+				</Form.Item>
+
+				<Form.Item>
+					<Button
+						type="primary"
+						htmlType="submit"
+						className="login-form-button"
+					>
+						Log in
+					</Button>
+					Or <a href="">register now!</a>
+				</Form.Item>
+			</Form>
+		</div>
 	)
 }
