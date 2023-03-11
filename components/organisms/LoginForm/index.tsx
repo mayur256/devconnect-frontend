@@ -2,12 +2,9 @@
 import React from 'react'
 
 // Antd
+import { Button, Checkbox, Form, Input, Row, Col, Typography } from 'antd'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
-import { Button, Checkbox, Form, Input } from 'antd'
-import type { ValidateErrorEntity } from 'rc-field-form/lib/interface'
-
-// Side effect imports
-import styles from './LoginForm.module.scss'
+// import type { ValidateErrorEntity } from 'rc-field-form/lib/interface'
 
 // Component definition
 export const LoginForm: React.FC = () => {
@@ -15,77 +12,115 @@ export const LoginForm: React.FC = () => {
 		console.log('Success:', values)
 	}
 
-	const onFinishFailed = (errorInfo: ValidateErrorEntity<string>) => {
+	/* const onFinishFailed = (errorInfo: ValidateErrorEntity<string>) => {
 		console.log('Failed:', errorInfo)
-	}
+	} */
 
 	// Main renderer
 	return (
-		<div id={styles['components-form-demo-normal-login']}>
-			<Form
-				name="login-form"
-				className="login-form"
-				initialValues={{ remember: true }}
-				style={{ marginTop: '2rem' }}
-				onFinish={onFinish}
-				onFinishFailed={onFinishFailed}
-				autoComplete="off"
-			>
-				<Form.Item
-					name="username"
-					rules={[
-						{
-							required: true,
-							message: 'Please input your username!',
-						},
-					]}
-				>
-					<Input
-						prefix={
-							<UserOutlined className="site-form-item-icon" />
-						}
-						placeholder="Username"
-					/>
-				</Form.Item>
+		<Form
+			name="basic"
+			initialValues={{ remember: true }}
+			style={{ marginTop: '2rem' }}
+			onFinish={onFinish}
+			autoComplete="off"
+			wrapperCol={{
+				md: { offset: 8, span: 8 },
+				sm: { offset: 4, span: 16 },
+			}}
+		>
+			<Row>
+				<Col xs={24} className="text-center">
+					<Typography.Title level={2}>Login</Typography.Title>
+				</Col>
+			</Row>
 
-				<Form.Item
-					name="password"
-					rules={[
-						{
-							required: true,
-							message: 'Please input your password!',
-						},
-					]}
-				>
-					<Input.Password
-						prefix={
-							<LockOutlined className="site-form-item-icon" />
-						}
-						placeholder="Password"
-					/>
-				</Form.Item>
+			<Row>
+				<Col xs={24}>
+					<Form.Item
+						name="username"
+						rules={[
+							{
+								required: true,
+								message: 'Please input your username!',
+							},
+						]}
+					>
+						<Input
+							prefix={
+								<UserOutlined className="site-form-item-icon" />
+							}
+							placeholder="Username"
+						/>
+					</Form.Item>
+				</Col>
+			</Row>
 
-				<Form.Item>
-					<Form.Item name="remember" valuePropName="checked" noStyle>
+			<Row>
+				<Col xs={24}>
+					<Form.Item
+						name="password"
+						rules={[
+							{
+								required: true,
+								message: 'Please input your password!',
+							},
+						]}
+					>
+						<Input
+							prefix={
+								<LockOutlined className="site-form-item-icon" />
+							}
+							type="password"
+							placeholder="Password"
+						/>
+					</Form.Item>
+				</Col>
+			</Row>
+
+			<Row>
+				<Col xs={24}>
+					<Form.Item name="remember" valuePropName="checked">
 						<Checkbox>Remember me</Checkbox>
 					</Form.Item>
+				</Col>
+			</Row>
 
+			<Row>
+				<Col xs={24}>
+					<Form.Item>
+						<Button
+							type="primary"
+							htmlType="submit"
+							style={{ width: '100%' }}
+						>
+							Log me in
+						</Button>
+					</Form.Item>
+				</Col>
+			</Row>
+
+			<Row>
+				<Col
+					sm={{ offset: 4, span: 6 }}
+					xs={{ span: 6 }}
+					md={{ offset: 8, span: 2 }}
+				>
 					<a className="login-form-forgot" href="">
-						Forgot password
+						Forgot password?
 					</a>
-				</Form.Item>
+				</Col>
 
-				<Form.Item>
-					<Button
-						type="primary"
-						htmlType="submit"
-						className="login-form-button"
-					>
-						Log in
-					</Button>
-					Or <a href="">register now!</a>
-				</Form.Item>
-			</Form>
-		</div>
+				<Col
+					sm={{ offset: 6, span: 6 }}
+					xs={{ span: 6 }}
+					md={{ offset: 4, span: 2 }}
+				>
+					<a className="login-form-forgot" href="">
+						Create account!
+					</a>
+				</Col>
+			</Row>
+		</Form>
 	)
 }
