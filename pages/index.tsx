@@ -1,14 +1,10 @@
 // Top level imports
-import { ReactElement } from 'react';
+import { ReactElement } from 'react'
 
 // Atoms / Molecules / Organisms
-import { Header } from '@/components/organisms/Header';
+import { AppLayout } from '@/components/organisms/AppLayout'
 
 // Component definition
 export default function Home(): ReactElement {
-  return (
-    <>
-      <Header />
-    </>
-  )
+	return <AppLayout />
 }
