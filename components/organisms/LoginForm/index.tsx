@@ -1,5 +1,6 @@
 // Top level imports
 import React from 'react'
+import Link from 'next/link'
 
 // Antd
 import { Button, Checkbox, Form, Input, Row, Col, Typography } from 'antd'
@@ -106,9 +107,7 @@ export const LoginForm: React.FC = () => {
 					xs={{ span: 6 }}
 					md={{ offset: 8, span: 2 }}
 				>
-					<a className="login-form-forgot" href="">
-						Forgot password?
-					</a>
+					<Link href="/">Forgot password?</Link>
 				</Col>
 
 				<Col
@@ -116,9 +115,7 @@ export const LoginForm: React.FC = () => {
 					xs={{ span: 6 }}
 					md={{ offset: 4, span: 2 }}
 				>
-					<a className="login-form-forgot" href="">
-						Create account!
-					</a>
+					<Link href="/registration">Create account!</Link>
 				</Col>
 			</Row>
 		</Form>

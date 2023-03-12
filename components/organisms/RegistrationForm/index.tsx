@@ -1,5 +1,6 @@
 // top level imports
 import { ReactElement } from 'react'
+import Link from 'next/link'
 
 // Antd
 import { Form, Row, Col, Typography, Input, Button } from 'antd'
@@ -134,9 +135,7 @@ export function RegistrationForm(): ReactElement {
 
 			<Row>
 				<Col xs={16} className="text-end">
-					<a className="login-form-forgot" href="">
-						Already an account? Login
-					</a>
+					<Link href="/login">Already an account? Login</Link>
 				</Col>
 			</Row>
 		</Form>
