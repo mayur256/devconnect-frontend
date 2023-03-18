@@ -7,15 +7,17 @@ import { Button, Checkbox, Form, Input, Row, Col, Typography } from 'antd'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 // import type { ValidateErrorEntity } from 'rc-field-form/lib/interface'
 
+// Utils
+// - Types
+import { LoginPayload } from 'utils/types'
+// - Service calls
+import { login } from 'utils/serviceCalls'
+
 // Component definition
 export const LoginForm: React.FC = () => {
-	const onFinish = (values: string) => {
-		console.log('Success:', values)
+	const onFinish = async (values: LoginPayload): Promise<void> => {
+		await login(values)
 	}
-
-	/* const onFinishFailed = (errorInfo: ValidateErrorEntity<string>) => {
-		console.log('Failed:', errorInfo)
-	} */
 
 	// Main renderer
 	return (
@@ -39,11 +41,15 @@ export const LoginForm: React.FC = () => {
 			<Row>
 				<Col xs={24}>
 					<Form.Item
-						name="username"
+						name="email"
 						rules={[
 							{
+								type: 'email',
+								message: 'The input is not valid E-mail!',
+							},
+							{
 								required: true,
-								message: 'Please input your username!',
+								message: 'Please enter your email!',
 							},
 						]}
 					>
@@ -51,7 +57,7 @@ export const LoginForm: React.FC = () => {
 							prefix={
 								<UserOutlined className="site-form-item-icon" />
 							}
-							placeholder="Username"
+							placeholder="Email"
 						/>
 					</Form.Item>
 				</Col>
