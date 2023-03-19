@@ -14,8 +14,12 @@ import { LoginPayload } from './types'
  */
 export const login = async (loginPayload: LoginPayload): Promise<void> => {
 	try {
-		const jsonRes = await fetch(`${BASE_API_URL}/login`, {
+		const jsonRes = await fetch(`${BASE_API_URL}/user/login`, {
 			method: API_METHOD.POST,
+			headers: {
+				'content-type': 'application/json',
+				accept: 'application/json',
+			},
 			body: JSON.stringify(loginPayload),
 		})
 

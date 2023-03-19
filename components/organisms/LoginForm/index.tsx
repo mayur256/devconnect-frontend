@@ -16,7 +16,8 @@ import { login } from 'utils/serviceCalls'
 // Component definition
 export const LoginForm: React.FC = () => {
 	const onFinish = async (values: LoginPayload): Promise<void> => {
-		await login(values)
+		const { email, password } = values
+		await login({ email, password })
 	}
 
 	// Main renderer
