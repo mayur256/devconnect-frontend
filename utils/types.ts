@@ -7,3 +7,9 @@ export interface LoginPayload {
 	password: string
 	remember?: boolean
 }
+
+export interface IAuthUser {
+	_id: string
+	email: string
+	name: string
+}
