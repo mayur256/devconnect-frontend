@@ -9,3 +9,12 @@ export const API_METHOD = {
 	PATCH: 'patch',
 	DELETE: 'delete',
 }
+export const STATUS = {
+	SUCCESS: 'success',
+	ERROR: 'error',
+}
+export const STATUS_CODE = {
+	OK: 200,
+	CLIENT_ERROR: 400,
+	INTERNAL_SERVER_ERROR: 500,
+}

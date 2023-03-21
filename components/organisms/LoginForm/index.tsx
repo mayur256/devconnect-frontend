@@ -1,6 +1,12 @@
 // Top level imports
 import React from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+
+// React-Redux
+import { useDispatch } from 'react-redux'
+import { SET_CURRENT_USER } from 'store/reducers/userSlice'
+import { AppDispatch } from 'store/types'
 
 // Antd
 import { Button, Checkbox, Form, Input, Row, Col, Typography } from 'antd'
@@ -8,16 +14,31 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons'
 // import type { ValidateErrorEntity } from 'rc-field-form/lib/interface'
 
 // Utils
+import { storeInStorage } from '@utils/Common'
 // - Types
 import { LoginPayload } from 'utils/types'
 // - Service calls
 import { login } from 'utils/serviceCalls'
+// - Constants
+import { STATUS } from '@utils/Constants'
 
 // Component definition
 export const LoginForm: React.FC = () => {
+	// Hooks
+	const dispatch: AppDispatch = useDispatch()
+	const router = useRouter()
+
+	/** Handler functions - starts */
+
 	const onFinish = async (values: LoginPayload): Promise<void> => {
 		const { email, password } = values
-		await login({ email, password })
+		const response = await login({ email, password })
+		if (response?.status === STATUS.SUCCESS) {
+			const { _id, name, email } = response.data
+			storeInStorage('devconnect_user', { _id, name, email })
+			dispatch(SET_CURRENT_USER({ _id, name, email }))
+			router.push('/')
+		}
 	}
 
 	// Main renderer

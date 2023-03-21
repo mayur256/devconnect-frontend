@@ -13,3 +13,8 @@ export interface IAuthUser {
 	email: string
 	name: string
 }
+
+export interface IResponseStruct<T> {
+	status: string
+	data: T
+}

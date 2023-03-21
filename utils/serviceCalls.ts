@@ -6,13 +6,15 @@
 // Constants
 import { BASE_API_URL, API_METHOD } from './Constants'
 // Types
-import { LoginPayload } from './types'
+import { IAuthUser, IResponseStruct, LoginPayload } from './types'
 
 /**
  * @description - Invokes the login api from client
  * @param {LoginPayload} loginPayload
  */
-export const login = async (loginPayload: LoginPayload): Promise<void> => {
+export const login = async (
+	loginPayload: LoginPayload
+): Promise<IResponseStruct<IAuthUser> | undefined> => {
 	try {
 		const jsonRes = await fetch(`${BASE_API_URL}/user/login`, {
 			method: API_METHOD.POST,
@@ -23,9 +25,7 @@ export const login = async (loginPayload: LoginPayload): Promise<void> => {
 			body: JSON.stringify(loginPayload),
 		})
 
-		const response = await jsonRes.json()
-
-		console.log(response)
+		return await jsonRes.json()
 	} catch (error) {
 		console.error(error)
 	}
