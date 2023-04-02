@@ -3,8 +3,8 @@
  */
 
 // Utils
-// Constants
-import { BASE_API_URL, API_METHOD } from './Constants'
+import { fetchWrapper } from './fetchWrapper'
+
 // Types
 import { IAuthUser, IResponseStruct, LoginPayload } from './types'
 
@@ -16,16 +16,22 @@ export const login = async (
 	loginPayload: LoginPayload
 ): Promise<IResponseStruct<IAuthUser> | undefined> => {
 	try {
-		const jsonRes = await fetch(`${BASE_API_URL}/user/login`, {
-			method: API_METHOD.POST,
-			headers: {
-				'content-type': 'application/json',
-				accept: 'application/json',
-			},
-			body: JSON.stringify(loginPayload),
+		const jsonRes = await fetchWrapper('/user/login', {
+			method: 'POST',
+			payload: loginPayload,
 		})
 
-		return await jsonRes.json()
+		return await jsonRes?.json()
+	} catch (error) {
+		console.error(error)
+	}
+}
+
+export const logout = async (): Promise<IResponseStruct<null> | undefined> => {
+	try {
+		const jsonRes = await fetchWrapper('/user/logout', { method: 'PUT' })
+
+		return await jsonRes?.json()
 	} catch (error) {
 		console.error(error)
 	}

@@ -3,11 +3,11 @@
  */
 export const BASE_API_URL = process.env.NEXT_PUBLIC_API_BASE_URL as string
 export const API_METHOD = {
-	POST: 'post',
-	GET: 'get',
-	PUT: 'put',
-	PATCH: 'patch',
-	DELETE: 'delete',
+	POST: 'POST',
+	GET: 'GET',
+	PUT: 'PUT',
+	PATCH: 'PATCH',
+	DELETE: 'DELETE',
 }
 export const STATUS = {
 	SUCCESS: 'success',
