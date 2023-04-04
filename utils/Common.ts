@@ -51,3 +51,14 @@ export const storeInStorage = (key: string, payload: any): void => {
 		localStorage.setItem(key, JSON.stringify(payload))
 	}
 }
+
+/**
+ * @param {string} key
+ * @returns {void}
+ * @description Removes an object from browser storage with given key
+ */
+export const removeFromStorage = (key: string): void => {
+	if (typeof window !== 'undefined') {
+		localStorage.removeItem(key)
+	}
+}

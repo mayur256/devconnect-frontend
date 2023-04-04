@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // redux-package
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { HYDRATE } from 'next-redux-wrapper'
 
 // Utilities
 import { storageToState } from '@utils/Common'
@@ -23,11 +24,24 @@ const userSlice = createSlice({
 			state = initialState,
 			action: PayloadAction<IAuthUser>
 		) => {
-			state = action.payload
+			Object.assign(state, action.payload)
 		},
 
 		CLEAR_CURRENT_USER: (state = initialState) => {
-			state = initialState
+			Object.assign(state, initialState)
+		},
+	},
+	/* extraReducers(builder) {
+        builder.addCase(HYDRATE, (state = initialState, action) => {
+            state = action.payload
+        })
+    }, */
+	extraReducers: {
+		[HYDRATE]: (state = initialState, action: PayloadAction<IAuthUser>) => {
+			return {
+				...state,
+				...action.payload,
+			}
 		},
 	},
 })
